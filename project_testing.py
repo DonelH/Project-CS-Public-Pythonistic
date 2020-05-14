@@ -938,7 +938,7 @@ class MainWindow(QWidget):
         devsMsg.setText(developers)
         devsMsg.setStyleSheet('QMessageBox {\
                               font-size: 18px;\
-                              font-family: geogia;\
+                              font-family: georgia;\
                               color: #000066;\
                               font-weight: bold;\
                               background-color:#CCE5FF;\
