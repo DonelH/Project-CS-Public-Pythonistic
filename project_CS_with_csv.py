@@ -4,6 +4,10 @@ from PyQt5.QtGui import QColor, QFont
 from PyQt5.QtCore import *
 from PyQt5.Qt import QStandardItemModel, QStandardItem
 import csv
+import mexicoSoup
+import canadaSoup
+import usaSoup
+import newsSoup
 
 mexicoCovData = []
 canadaCovData = []
@@ -38,12 +42,11 @@ class MainWindow(QMainWindow):
         treeView.setFixedHeight(850)
         treeView.move(10, 5)
         treeView.setStyleSheet('QTreeView {\
-                          margin: left;\
                           background-color:#FFFAFA;\
                           border-style: solid;\
                           border-width: 2px;\
                           border-radius: 10px;\
-                          border-corlor: gray;\
+                          border-color: #A0A0A0;\
                           padding: 6px;}')
 
         treeModel = QStandardItemModel()
@@ -52,94 +55,94 @@ class MainWindow(QMainWindow):
         # Canada Data
         canada = StandardItem('Canada', 14, set_bold=True, color=QColor(255, 0, 0))
 
-        nl = StandardItem('Newfoundland and Labrador', set_bold=True, color=QColor(178, 34, 34))
+        nl = StandardItem(canadaCovData[2][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(nl)
-        case = StandardItem("cases: " + str(canadaCovData[1][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[1][2]))
+        case = StandardItem("cases: " + canadaCovData[2][1])
+        death = StandardItem("deaths: " + canadaCovData[2][2])
         nl.appendRow(case)
         nl.appendRow(death)
 
-        pe = StandardItem('Prince Edward Island', set_bold=True, color=QColor(178, 34, 34))
+        pe = StandardItem(canadaCovData[3][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(pe)
-        case = StandardItem("cases: " + str(canadaCovData[2][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[2][2]))
+        case = StandardItem("cases: " + canadaCovData[3][1])
+        death = StandardItem("deaths: " + canadaCovData[3][2])
         pe.appendRow(case)
         pe.appendRow(death)
 
-        ns = StandardItem('Nova Scotia',set_bold=True, color=QColor(178, 34, 34))
+        ns = StandardItem(canadaCovData[4][0],set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(ns)
-        case = StandardItem("cases: " + str(canadaCovData[3][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[3][2]))
+        case = StandardItem("cases: " + canadaCovData[4][1])
+        death = StandardItem("deaths: " + canadaCovData[4][2])
         ns.appendRow(case)
         ns.appendRow(death)
 
-        nb = StandardItem('New Brunswick', set_bold=True, color=QColor(178, 34, 34))
+        nb = StandardItem(canadaCovData[5][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(nb)
-        case = StandardItem("cases: " + str(canadaCovData[4][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[4][2]))
+        case = StandardItem("cases: " + canadaCovData[5][1])
+        death = StandardItem("deaths: " + canadaCovData[5][2])
         nb.appendRow(case)
         nb.appendRow(death)
 
-        quebec = StandardItem('Quebec', set_bold=True, color=QColor(178, 34, 34))
+        quebec = StandardItem(canadaCovData[6][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(quebec)
-        case = StandardItem("cases: " + str(canadaCovData[5][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[5][2]))
+        case = StandardItem("cases: " + canadaCovData[6][1])
+        death = StandardItem("deaths: " + canadaCovData[6][2])
         quebec.appendRow(case)
         quebec.appendRow(death)
 
-        ontario = StandardItem('Ontario', set_bold=True, color=QColor(178, 34, 34))
+        ontario = StandardItem(canadaCovData[7][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(ontario)
-        case = StandardItem("cases: " + str(canadaCovData[6][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[6][2]))
+        case = StandardItem("cases: " + canadaCovData[7][1])
+        death = StandardItem("deaths: " + canadaCovData[7][2])
         ontario.appendRow(case)
         ontario.appendRow(death)
 
-        manitoba = StandardItem('Manitoba', set_bold=True, color=QColor(178, 34, 34))
+        manitoba = StandardItem(canadaCovData[8][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(manitoba)
-        case = StandardItem("cases: " + str(canadaCovData[7][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[7][2]))
+        case = StandardItem("cases: " + canadaCovData[8][1])
+        death = StandardItem("deaths: " + canadaCovData[8][2])
         manitoba.appendRow(case)
         manitoba.appendRow(death)
 
-        saskatchewan = StandardItem('Saskatchewan', set_bold=True, color=QColor(178, 34, 34))
+        saskatchewan = StandardItem(canadaCovData[9][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(saskatchewan)
-        case = StandardItem("cases: " + str(canadaCovData[8][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[8][2]))
+        case = StandardItem("cases: " + canadaCovData[9][1])
+        death = StandardItem("deaths: " + canadaCovData[9][2])
         saskatchewan.appendRow(case)
         saskatchewan.appendRow(death)
 
-        alberta = StandardItem('Alberta', set_bold=True, color=QColor(178, 34, 34))
+        alberta = StandardItem(canadaCovData[10][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(alberta)
-        case = StandardItem("cases: " + str(canadaCovData[9][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[9][2]))
+        case = StandardItem("cases: " + canadaCovData[10][1])
+        death = StandardItem("deaths: " + canadaCovData[10][2])
         alberta.appendRow(case)
         alberta.appendRow(death)
 
-        bc = StandardItem('Bristis Columbia', set_bold=True, color=QColor(178, 34, 34))
+        bc = StandardItem(canadaCovData[11][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(bc)
-        case = StandardItem("cases: " + str(canadaCovData[10][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[10][2]))
+        case = StandardItem("cases: " + canadaCovData[11][1])
+        death = StandardItem("deaths: " + canadaCovData[11][2])
         bc.appendRow(case)
         bc.appendRow(death)
 
-        yukon = StandardItem('Yukon', set_bold=True, color=QColor(178, 34, 34))
+        yukon = StandardItem(canadaCovData[12][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(yukon)
-        case = StandardItem("cases: " + str(canadaCovData[11][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[11][2]))
+        case = StandardItem("cases: " + canadaCovData[12][1])
+        death = StandardItem("deaths: " + canadaCovData[12][2])
         yukon.appendRow(case)
         yukon.appendRow(death)
 
-        nt = StandardItem('Northwest Teritories', set_bold=True, color=QColor(178, 34, 34))
+        nt = StandardItem(canadaCovData[13][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(nt)
-        case = StandardItem("cases: " + str(canadaCovData[12][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[12][2]))
+        case = StandardItem("cases: " + canadaCovData[13][1])
+        death = StandardItem("deaths: " + canadaCovData[13][2])
         nt.appendRow(case)
         nt.appendRow(death)
 
-        nunavut = StandardItem('Nunavut', set_bold=True, color=QColor(178, 34, 34))
+        nunavut = StandardItem(canadaCovData[14][0], set_bold=True, color=QColor(178, 34, 34))
         canada.appendRow(nunavut)
-        case = StandardItem("cases: " + str(canadaCovData[13][1]))
-        death = StandardItem("deaths: " + str(canadaCovData[13][2]))
+        case = StandardItem("cases: " + canadaCovData[14][1])
+        death = StandardItem("deaths: " + canadaCovData[14][2])
         nunavut.appendRow(case)
         nunavut.appendRow(death)
 
@@ -156,10 +159,10 @@ class MainWindow(QMainWindow):
         treeViewUS.setStyleSheet('QTreeView {\
                           margin: left;\
                           background-color:#F0F8FF;\
-                          border-style: inset;\
+                          border-style: solid;\
                           border-width: 2px;\
                           border-radius: 10px;\
-                          border-corlor: gray;\
+                          border-color: #A0A0A0;\
                           padding: 6px;\
                           }')
 
@@ -169,384 +172,398 @@ class MainWindow(QMainWindow):
         # USA Data
         usa = StandardItem('USA', 14, set_bold=True, color=QColor(0, 0, 204))
 
-        ny = StandardItem('New York', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ny)
-        case = StandardItem("cases: 343,051")
-        death = StandardItem("deaths: 22,170")
-        ny.appendRow(case)
-        ny.appendRow(death)
-
-        nj = StandardItem('New Jersey', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nj)
-        case = StandardItem("cases: 142,704")
-        death = StandardItem("deaths: 9,946")
-        nj.appendRow(case)
-        nj.appendRow(death)
-
-        ma = StandardItem('Massachusetts',set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ma)
-        case = StandardItem("cases: 80,497")
-        death = StandardItem("deaths: 5,315")
-        ma.appendRow(case)
-        ma.appendRow(death)
-
-        il = StandardItem('Illinois', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(il)
-        case = StandardItem("cases: 43,903")
-        death = StandardItem("deaths: 1,933")
-        il.appendRow(case)
-        il.appendRow(death)
-
-        ca = StandardItem('California', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ca)
-        case = StandardItem("cases: 71,141")
-        death = StandardItem("deaths: 2,934")
-        ca.appendRow(case)
-        ca.appendRow(death)
-
-        pa = StandardItem('Pennsylvania', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(pa)
-        case = StandardItem("cases: 43,255")
-        death = StandardItem("deaths: 1,866")
-        pa.appendRow(case)
-        pa.appendRow(death)
-
-        mi = StandardItem('Michigan', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(mi)
-        case = StandardItem("cases: 38,113")
-        death = StandardItem("deaths: 3,364")
-        mi.appendRow(case)
-        mi.appendRow(death)
-
-        fl = StandardItem('Florida', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(fl)
-        case = StandardItem("cases: 32,138")
-        death = StandardItem("deaths: 1,088")
-        fl.appendRow(case)
-        fl.appendRow(death)
-
-        la = StandardItem('Louisiana', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(la)
-        case = StandardItem("cases: 27,068")
-        death = StandardItem("deaths: 1,740")
-        la.appendRow(case)
-        la.appendRow(death)
-
-        tx = StandardItem('Texas', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(tx)
-        case = StandardItem("cases: 25,292")
-        death = StandardItem("deaths: 661")
-        tx.appendRow(case)
-        tx.appendRow(death)
-
-        ct = StandardItem('Connecticut', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ct)
-        case = StandardItem("cases: 25,269")
-        death = StandardItem("deaths: 1,924")
-        ct.appendRow(case)
-        ct.appendRow(death)
-
-        ga = StandardItem('Georgia', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ga)
-        case = StandardItem("cases: 23,773")
-        death = StandardItem("deaths: 942")
-        ga.appendRow(case)
-        ga.appendRow(death)
-
-        md = StandardItem('Maryland', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(md)
-        case = StandardItem("cases: 19,487")
-        death = StandardItem("deaths: 945")
-        md.appendRow(case)
-        md.appendRow(death)
-
-        oh = StandardItem('Ohio', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(oh)
-        case = StandardItem("cases: 16,325")
-        death = StandardItem("deaths: 753")
-        oh.appendRow(case)
-        oh.appendRow(death)
-
-        ind = StandardItem('Indiana', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ind)
-        case = StandardItem("cases: 15,961")
-        death = StandardItem("deaths: 844")
-        ind.appendRow(case)
-        ind.appendRow(death)
-
-        va = StandardItem('Virginia', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(va)
-        case = StandardItem("cases: 13,538")
-        death = StandardItem("deaths: 460")
-        va.appendRow(case)
-        va.appendRow(death)
-
-        wa = StandardItem('Washington', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(wa)
-        case = StandardItem("cases: 13,521")
-        death = StandardItem("deaths: 749")
-        wa.appendRow(case)
-        wa.appendRow(death)
-
-        co = StandardItem('Colorado', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(co)
-        case = StandardItem("cases: 13,441")
-        death = StandardItem("deaths: 680")
-        co.appendRow(case)
-        co.appendRow(death)
-
-        tn = StandardItem('Tennessee', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(tn)
-        case = StandardItem("cases: 9,930")
-        death = StandardItem("deaths: 183")
-        tn.appendRow(case)
-        tn.appendRow(death)
-
-        nc = StandardItem('North Carolina', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nc)
-        case = StandardItem("cases: 9,298")
-        death = StandardItem("deaths: 328")
-        nc.appendRow(case)
-        nc.appendRow(death)
-
-        ri = StandardItem('Rhode Island', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ri)
-        case = StandardItem("cases: 7,708")
-        death = StandardItem("deaths: 233")
-        ri.appendRow(case)
-        ri.appendRow(death)
-
-        mo = StandardItem('Missouri', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(mo)
-        case = StandardItem("cases: 7,253")
-        death = StandardItem("deaths: 299")
-        mo.appendRow(case)
-        mo.appendRow(death)
-
-        az = StandardItem('Arizona', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(az)
-        case = StandardItem("cases: 6,725")
-        death = StandardItem("deaths: 275")
-        az.appendRow(case)
-        az.appendRow(death)
-
-        al = StandardItem('Alabama', set_bold=True, color=QColor(76, 0, 153))
+        al = StandardItem(usaCovData[0][0], set_bold=True, color=QColor(76, 0, 153))
         usa.appendRow(al)
-        case = StandardItem("cases: 6,467")
-        death = StandardItem("deaths: 219")
+        case = StandardItem("cases: " + usaCovData[0][1])
+        death = StandardItem("deaths: " + usaCovData[0][2])
         al.appendRow(case)
         al.appendRow(death)
 
-        ms = StandardItem('Mississippi', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ms)
-        case = StandardItem("cases: 6,094")
-        death = StandardItem("deaths: 229")
-        ms.appendRow(case)
-        ms.appendRow(death)
-
-        wi = StandardItem('Wisconsin', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(wi)
-        case = StandardItem("cases: 6,081")
-        death = StandardItem("deaths: 280")
-        wi.appendRow(case)
-        wi.appendRow(death)
-
-        ia = StandardItem('Iowa', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ia)
-        case = StandardItem("cases: 5,868")
-        death = StandardItem("deaths: 127")
-        ia.appendRow(case)
-        ia.appendRow(death)
-
-        sc = StandardItem('South Carolina', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(sc)
-        case = StandardItem("cases: 5,498")
-        death = StandardItem("deaths: 174")
-        sc.appendRow(case)
-        sc.appendRow(death)
-
-        nv = StandardItem('Nevada', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nv)
-        case = StandardItem("cases: 4,693")
-        death = StandardItem("deaths: 206")
-        nv.appendRow(case)
-        nv.appendRow(death)
-
-        ut = StandardItem('Utah', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ut)
-        case = StandardItem("cases: 4,236")
-        death = StandardItem("deaths: 41")
-        ut.appendRow(case)
-        ut.appendRow(death)
-
-        de = StandardItem('Delaware', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(de)
-        case = StandardItem("cases: 4,162")
-        death = StandardItem("deaths: 125")
-        de.appendRow(case)
-        de.appendRow(death)
-
-        ky = StandardItem('Kentucky', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ky)
-        case = StandardItem("cases: 4,078")
-        death = StandardItem("deaths: 208")
-        ky.appendRow(case)
-        ky.appendRow(death)
-
-        dc = StandardItem('District of Columbia', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(dc)
-        case = StandardItem("cases: 3,892")
-        death = StandardItem("deaths: 185")
-        dc.appendRow(case)
-        dc.appendRow(death)
-
-        mn = StandardItem('Minnesota', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(mn)
-        case = StandardItem("cases: 3,816")
-        death = StandardItem("deaths: 286")
-        mn.appendRow(case)
-        mn.appendRow(death)
-
-        ks = StandardItem('Kansas', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ks)
-        case = StandardItem("cases: 3,302")
-        death = StandardItem("deaths: 124")
-        ks.appendRow(case)
-        ks.appendRow(death)
-
-        ok = StandardItem('Oklahoma', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ok)
-        case = StandardItem("cases: 3,281")
-        death = StandardItem("deaths: 197")
-        ok.appendRow(case)
-        ok.appendRow(death)
-
-        ne = StandardItem('Nebraska', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ne)
-        case = StandardItem("cases: 3,028")
-        death = StandardItem("deaths: 56")
-        ne.appendRow(case)
-        ne.appendRow(death)
-
-        ar = StandardItem('Arkansas', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ar)
-        case = StandardItem("cases: 3,017")
-        death = StandardItem("deaths: 50")
-        ar.appendRow(case)
-        ar.appendRow(death)
-
-        nm = StandardItem('New Mexico', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nm)
-        case = StandardItem("cases: 2,726")
-        death = StandardItem("deaths: 99")
-        nm.appendRow(case)
-        nm.appendRow(death)
-        
-        ore = StandardItem('Oregon', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ore)
-        case = StandardItem("cases: 2,354")
-        death = StandardItem("deaths: 93")
-        ore.appendRow(case)
-        ore.appendRow(death)
-
-        sd = StandardItem('Oregon', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(sd)
-        case = StandardItem("cases: 2,212")
-        death = StandardItem("deaths: 11")
-        sd.appendRow(case)
-        sd.appendRow(death)
-
-        ida = StandardItem('Idaho', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(ida)
-        case = StandardItem("cases: 1,897")
-        death = StandardItem("deaths: 56")
-        ida.appendRow(case)
-        ida.appendRow(death)
-
-        nh = StandardItem('New Hampshire', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nh)
-        case = StandardItem("cases: 1,894")
-        death = StandardItem("deaths: 60")
-        nh.appendRow(case)
-        nh.appendRow(death)
-
-        pr = StandardItem('Puerto Rico', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(pr)
-        case = StandardItem("cases: 1,389")
-        death = StandardItem("deaths: 84")
-        pr.appendRow(case)
-        pr.appendRow(death)
-
-        wv = StandardItem('West Virginia', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(wv)
-        case = StandardItem("cases: 1,055")
-        death = StandardItem("deaths: 34")
-        wv.appendRow(case)
-        wv.appendRow(death)
-
-        me= StandardItem('Maine', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(me)
-        case = StandardItem("cases: 1,015")
-        death = StandardItem("deaths: 50")
-        me.appendRow(case)
-        me.appendRow(death)
-
-        nd = StandardItem('North Dakota', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(nd)
-        case = StandardItem("cases: 942")
-        death = StandardItem("deaths: 19")
-        nd.appendRow(case)
-        nd.appendRow(death)
-        
-        vt = StandardItem('Vermont', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(vt)
-        case = StandardItem("cases: 855")
-        death = StandardItem("deaths: 47")
-        vt.appendRow(case)
-        vt.appendRow(death)
-
-        hi = StandardItem('Hawaii', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(hi)
-        case = StandardItem("cases: 606")
-        death = StandardItem("deaths: 14")
-        hi.appendRow(case)
-        hi.appendRow(death)
-
-        wy = StandardItem('Wyoming', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(wy)
-        case = StandardItem("cases: 502")
-        death = StandardItem("deaths: 7")
-        wy.appendRow(case)
-        wy.appendRow(death)
-
-        mt = StandardItem('Montana', set_bold=True, color=QColor(76, 0, 153))
-        usa.appendRow(mt)
-        case = StandardItem("cases: 449")
-        death = StandardItem("deaths: 14")
-        mt.appendRow(case)
-        mt.appendRow(death)
-
-        ak = StandardItem('Alaska', set_bold=True, color=QColor(76, 0, 153))
+        ak = StandardItem(usaCovData[1][0], set_bold=True, color=QColor(76, 0, 153))
         usa.appendRow(ak)
-        case = StandardItem("cases: 344")
-        death = StandardItem("deaths: 9")
+        case = StandardItem("cases: " + usaCovData[1][1])
+        death = StandardItem("deaths: " + usaCovData[1][2])
         ak.appendRow(case)
         ak.appendRow(death)
 
-        gm = StandardItem('Guam', set_bold=True, color=QColor(76, 0, 153))
+        am = StandardItem(usaCovData[2][0],set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(am)
+        case = StandardItem("cases: " + usaCovData[2][1])
+        death = StandardItem("deaths: " + usaCovData[2][2])
+        am.appendRow(case)
+        am.appendRow(death)
+
+        az = StandardItem(usaCovData[3][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(az)
+        case = StandardItem("cases: " + usaCovData[3][1])
+        death = StandardItem("deaths: " + usaCovData[3][2])
+        az.appendRow(case)
+        az.appendRow(death)
+
+        ar = StandardItem(usaCovData[4][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ar)
+        case = StandardItem("cases: " + usaCovData[4][1])
+        death = StandardItem("deaths: " + usaCovData[4][2])
+        ar.appendRow(case)
+        ar.appendRow(death)
+
+        ca = StandardItem(usaCovData[5][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ca)
+        case = StandardItem("cases: " + usaCovData[5][1])
+        death = StandardItem("deaths: " + usaCovData[5][2])
+        ca.appendRow(case)
+        ca.appendRow(death)
+
+        co = StandardItem(usaCovData[6][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(co)
+        case = StandardItem("cases: " + usaCovData[6][1])
+        death = StandardItem("deaths: " + usaCovData[6][2])
+        co.appendRow(case)
+        co.appendRow(death)
+
+        ct = StandardItem(usaCovData[7][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ct)
+        case = StandardItem("cases: " + usaCovData[7][1])
+        death = StandardItem("deaths: " + usaCovData[7][2])
+        ct.appendRow(case)
+        ct.appendRow(death)
+
+        de = StandardItem(usaCovData[8][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(de)
+        case = StandardItem("cases: " + usaCovData[8][1])
+        death = StandardItem("deaths: " + usaCovData[8][2])
+        de.appendRow(case)
+        de.appendRow(death)
+
+        dc = StandardItem(usaCovData[9][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(dc)
+        case = StandardItem("cases: " + usaCovData[9][1])
+        death = StandardItem("deaths: " + usaCovData[9][2])
+        dc.appendRow(case)
+        dc.appendRow(death)
+
+        fl = StandardItem(usaCovData[10][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(fl)
+        case = StandardItem("cases: " + usaCovData[10][1])
+        death = StandardItem("deaths: " + usaCovData[10][2])
+        fl.appendRow(case)
+        fl.appendRow(death)
+
+        ga = StandardItem(usaCovData[11][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ga)
+        case = StandardItem("cases: " + usaCovData[11][1])
+        death = StandardItem("deaths: " + usaCovData[11][2])
+        ga.appendRow(case)
+        ga.appendRow(death)
+
+        gm = StandardItem(usaCovData[12][0], set_bold=True, color=QColor(76, 0, 153))
         usa.appendRow(gm)
-        case = StandardItem("cases: 141")
-        death = StandardItem("deaths: 5")
+        case = StandardItem("cases: " + usaCovData[12][1])
+        death = StandardItem("deaths: " + usaCovData[12][2])
         gm.appendRow(case)
         gm.appendRow(death)
 
-        vi = StandardItem('Virgin Islands', set_bold=True, color=QColor(76, 0, 153))
+        hi = StandardItem(usaCovData[13][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(hi)
+        case = StandardItem("cases: " + usaCovData[13][1])
+        death = StandardItem("deaths: " + usaCovData[13][2])
+        hi.appendRow(case)
+        hi.appendRow(death)
+
+        ido = StandardItem(usaCovData[14][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ido)
+        case = StandardItem("cases: " + usaCovData[14][1])
+        death = StandardItem("deaths: " + usaCovData[14][2])
+        ido.appendRow(case)
+        ido.appendRow(death)
+
+        il = StandardItem(usaCovData[15][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(il)
+        case = StandardItem("cases: " + usaCovData[15][1])
+        death = StandardItem("deaths: " + usaCovData[15][2])
+        il.appendRow(case)
+        il.appendRow(death)
+
+        ina = StandardItem(usaCovData[16][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ina)
+        case = StandardItem("cases: " + usaCovData[16][1])
+        death = StandardItem("deaths: " + usaCovData[16][2])
+        ina.appendRow(case)
+        ina.appendRow(death)
+
+        ia = StandardItem(usaCovData[17][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ia)
+        case = StandardItem("cases: " + usaCovData[17][1])
+        death = StandardItem("deaths: " + usaCovData[17][2])
+        ia.appendRow(case)
+        ia.appendRow(death)
+
+        ks = StandardItem(usaCovData[18][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ks)
+        case = StandardItem("cases: " + usaCovData[18][1])
+        death = StandardItem("deaths: " + usaCovData[18][2])
+        ks.appendRow(case)
+        ks.appendRow(death)
+
+        ky = StandardItem(usaCovData[19][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ky)
+        case = StandardItem("cases: " + usaCovData[19][1])
+        death = StandardItem("deaths: " + usaCovData[19][2])
+        ky.appendRow(case)
+        ky.appendRow(death)
+
+        la = StandardItem(usaCovData[20][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(la)
+        case = StandardItem("cases: " + usaCovData[20][1])
+        death = StandardItem("deaths: " + usaCovData[20][2])
+        la.appendRow(case)
+        la.appendRow(death)
+
+        me = StandardItem(usaCovData[21][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(me)
+        case = StandardItem("cases: " + usaCovData[21][1])
+        death = StandardItem("deaths: " + usaCovData[21][2])
+        me.appendRow(case)
+        me.appendRow(death)
+
+        md = StandardItem(usaCovData[22][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(md)
+        case = StandardItem("cases: " + usaCovData[22][1])
+        death = StandardItem("deaths: " + usaCovData[22][2])
+        md.appendRow(case)
+        md.appendRow(death)
+
+        ma = StandardItem(usaCovData[23][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ma)
+        case = StandardItem("cases: " + usaCovData[23][1])
+        death = StandardItem("deaths: " + usaCovData[23][2])
+        ma.appendRow(case)
+        ma.appendRow(death)
+
+        mi = StandardItem(usaCovData[24][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(mi)
+        case = StandardItem("cases: " + usaCovData[24][1])
+        death = StandardItem("deaths: " + usaCovData[24][2])
+        mi.appendRow(case)
+        mi.appendRow(death)
+
+        mn = StandardItem(usaCovData[25][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(mn)
+        case = StandardItem("cases: " + usaCovData[25][1])
+        death = StandardItem("deaths: " + usaCovData[25][2])
+        mn.appendRow(case)
+        mn.appendRow(death)
+
+        ms = StandardItem(usaCovData[26][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ms)
+        case = StandardItem("cases: " + usaCovData[26][1])
+        death = StandardItem("deaths: " + usaCovData[26][2])
+        ms.appendRow(case)
+        ms.appendRow(death)
+
+        mo = StandardItem(usaCovData[27][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(mo)
+        case = StandardItem("cases: " + usaCovData[27][1])
+        death = StandardItem("deaths: " + usaCovData[27][2])
+        mo.appendRow(case)
+        mo.appendRow(death)
+
+        mt = StandardItem(usaCovData[28][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(mt)
+        case = StandardItem("cases: " + usaCovData[28][1])
+        death = StandardItem("deaths: " + usaCovData[28][2])
+        mt.appendRow(case)
+        mt.appendRow(death)
+
+        ne = StandardItem(usaCovData[29][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ne)
+        case = StandardItem("cases: " + usaCovData[29][1])
+        death = StandardItem("deaths: " + usaCovData[29][2])
+        ne.appendRow(case)
+        ne.appendRow(death)
+
+        nv = StandardItem(usaCovData[30][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nv)
+        case = StandardItem("cases: " + usaCovData[30][1])
+        death = StandardItem("deaths: " + usaCovData[30][2])
+        nv.appendRow(case)
+        nv.appendRow(death)
+
+        nh = StandardItem(usaCovData[31][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nh)
+        case = StandardItem("cases: " + usaCovData[31][1])
+        death = StandardItem("deaths: " + usaCovData[31][2])
+        nh.appendRow(case)
+        nh.appendRow(death)
+
+        nj = StandardItem(usaCovData[32][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nj)
+        case = StandardItem("cases: " + usaCovData[32][1])
+        death = StandardItem("deaths: " + usaCovData[32][2])
+        nj.appendRow(case)
+        nj.appendRow(death)
+
+        nm = StandardItem(usaCovData[33][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nm)
+        case = StandardItem("cases: " + usaCovData[33][1])
+        death = StandardItem("deaths: " + usaCovData[33][2])
+        nm.appendRow(case)
+        nm.appendRow(death)
+
+        ny = StandardItem(usaCovData[34][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ny)
+        case = StandardItem("cases: " + usaCovData[34][1])
+        death = StandardItem("deaths: " + usaCovData[34][2])
+        ny.appendRow(case)
+        ny.appendRow(death)
+
+        nc = StandardItem(usaCovData[35][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nc)
+        case = StandardItem("cases: " + usaCovData[35][1])
+        death = StandardItem("deaths: " + usaCovData[35][2])
+        nc.appendRow(case)
+        nc.appendRow(death)
+
+        nk = StandardItem(usaCovData[36][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nk)
+        case = StandardItem("cases: " + usaCovData[36][1])
+        death = StandardItem("deaths: " + usaCovData[36][2])
+        nk.appendRow(case)
+        nk.appendRow(death)
+
+        nmi = StandardItem(usaCovData[37][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(nmi)
+        case = StandardItem("cases: " + usaCovData[37][1])
+        death = StandardItem("deaths: " + usaCovData[37][2])
+        nmi.appendRow(case)
+        nmi.appendRow(death)
+
+        oh = StandardItem(usaCovData[38][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(oh)
+        case = StandardItem("cases: " + usaCovData[38][1])
+        death = StandardItem("deaths: " + usaCovData[38][2])
+        oh.appendRow(case)
+        oh.appendRow(death)
+        
+        ok = StandardItem(usaCovData[39][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ok)
+        case = StandardItem("cases: " + usaCovData[39][1])
+        death = StandardItem("deaths: " + usaCovData[39][2])
+        ok.appendRow(case)
+        ok.appendRow(death)
+
+        ore = StandardItem(usaCovData[40][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ore)
+        case = StandardItem("cases: " + usaCovData[40][1])
+        death = StandardItem("deaths: " + usaCovData[40][2])
+        ore.appendRow(case)
+        ore.appendRow(death)
+
+        pa = StandardItem(usaCovData[41][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(pa)
+        case = StandardItem("cases: " + usaCovData[41][1])
+        death = StandardItem("deaths: " + usaCovData[41][2])
+        pa.appendRow(case)
+        pa.appendRow(death)
+
+        pr = StandardItem(usaCovData[42][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(pr)
+        case = StandardItem("cases: " + usaCovData[42][1])
+        death = StandardItem("deaths: " + usaCovData[42][2])
+        pr.appendRow(case)
+        pr.appendRow(death)
+
+        ri = StandardItem(usaCovData[43][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ri)
+        case = StandardItem("cases: " + usaCovData[43][1])
+        death = StandardItem("deaths: " + usaCovData[43][2])
+        ri.appendRow(case)
+        ri.appendRow(death)
+
+        sc= StandardItem(usaCovData[44][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(sc)
+        case = StandardItem("cases: " + usaCovData[44][1])
+        death = StandardItem("deaths: " + usaCovData[44][2])
+        sc.appendRow(case)
+        sc.appendRow(death)
+
+        sd = StandardItem(usaCovData[45][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(sd)
+        case = StandardItem("cases: " + usaCovData[45][1])
+        death = StandardItem("deaths: " + usaCovData[45][2])
+        sd.appendRow(case)
+        sd.appendRow(death)
+        
+        tn = StandardItem(usaCovData[46][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(tn)
+        case = StandardItem("cases: " + usaCovData[46][1])
+        death = StandardItem("deaths: " + usaCovData[46][2])
+        tn.appendRow(case)
+        tn.appendRow(death)
+
+        tx = StandardItem(usaCovData[47][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(tx)
+        case = StandardItem("cases: " + usaCovData[47][1])
+        death = StandardItem("deaths: " + usaCovData[47][2])
+        tx.appendRow(case)
+        tx.appendRow(death)
+
+        ut = StandardItem(usaCovData[48][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(ut)
+        case = StandardItem("cases: " + usaCovData[48][1])
+        death = StandardItem("deaths: " + usaCovData[48][2])
+        ut.appendRow(case)
+        ut.appendRow(death)
+
+        vi = StandardItem(usaCovData[49][0], set_bold=True, color=QColor(76, 0, 153))
         usa.appendRow(vi)
-        case = StandardItem("cases: 57")
-        death = StandardItem("deaths: 4")
+        case = StandardItem("cases: " + usaCovData[49][1])
+        death = StandardItem("deaths: " + usaCovData[49][2])
         vi.appendRow(case)
         vi.appendRow(death)
 
+        vt = StandardItem(usaCovData[50][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(vt)
+        case = StandardItem("cases: " + usaCovData[50][1])
+        death = StandardItem("deaths: " + usaCovData[50][2])
+        vt.appendRow(case)
+        vt.appendRow(death)
+
+        va = StandardItem(usaCovData[51][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(va)
+        case = StandardItem("cases: " + usaCovData[51][1])
+        death = StandardItem("deaths: " + usaCovData[51][2])
+        va.appendRow(case)
+        va.appendRow(death)
+
+        wa = StandardItem(usaCovData[52][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(wa)
+        case = StandardItem("cases: " + usaCovData[52][1])
+        death = StandardItem("deaths: " + usaCovData[52][2])
+        wa.appendRow(case)
+        wa.appendRow(death)
+
+        wv = StandardItem(usaCovData[53][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(wv)
+        case = StandardItem("cases: " + usaCovData[53][1])
+        death = StandardItem("deaths: " + usaCovData[53][2])
+        wv.appendRow(case)
+        wv.appendRow(death)
+
+        wi = StandardItem(usaCovData[54][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(wi)
+        case = StandardItem("cases: " + usaCovData[54][1])
+        death = StandardItem("deaths: " + usaCovData[54][2])
+        wi.appendRow(case)
+        wi.appendRow(death)
+
+        wy = StandardItem(usaCovData[55][0], set_bold=True, color=QColor(76, 0, 153))
+        usa.appendRow(wa)
+        case = StandardItem("cases: " + usaCovData[55][1])
+        death = StandardItem("deaths: " + usaCovData[55][2])
+        wy.appendRow(case)
+        wa.appendRow(death)
+       
         # Add usa data to rootnode and set the tree model for tree view
         rootNodeUS.appendRow(usa)
         treeViewUS.setModel(treeModelUS)
@@ -561,10 +578,10 @@ class MainWindow(QMainWindow):
         treeViewMx.setStyleSheet('QTreeView {\
                           margin: left;\
                           background-color: #F5FFFA;\
-                          border-style: inset;\
+                          border-style: solid;\
                           border-width: 2px;\
                           border-radius: 10px;\
-                          border-corlor: gray;\
+                          border-color: #A0A0A0;\
                           padding: 6px;\
                           }')
 
@@ -890,7 +907,19 @@ class MainWindow(QMainWindow):
         news.setFixedWidth(900)
         news.setFixedHeight(250)
         news.move(1060, 900)
-
+        news.setText("Trending News:")
+        news.setStyleSheet('QTextEdit {\
+                          font: bold 16px;\
+                          font-family: georgia;\
+                          color: #000080;\
+                          border-style: dot-dash;\
+                          border-width: 1px;\
+                          border-radius: 10px;\
+                          border-color: darkblue;\
+                          padding: 3px;\
+                          }')
+       
+        # Layout settings
         hbox.addWidget(refresh)
         hbox.addWidget(source)
         hbox.addWidget(devs)
@@ -947,25 +976,22 @@ class MainWindow(QMainWindow):
         sys.exit(app.exec_())
     
 def getCanadaData():
-        with open('canadaData.csv') as canData:
-            csv_reader = csv.reader(canData, delimiter=',')
-            for row in csv_reader:
-                canadaCovData.append([row[0], row[1], row[2]])
+    canadaProvinces = canadaSoup.scrapeCanada()
+    for row in canadaProvinces:
+        canadaCovData.append([row[0], row[1], row[2]])
             
 def getUsaData():
-        with open('usaData.csv') as usData:
-            csv_reader = csv.reader(usData, delimiter=',')
-            for row in csv_reader:
-                usaCovData.append([row[0], row[1], row[2]])
-
+    usaStates = usaSoup.scrapeUSA()
+    for row in usaStates:
+        usaCovData.append([row[0], row[1], row[2]])
+        
 def getMexicoData():
-        with open('mexicoData.csv') as countryData:
-            csv_reader = csv.reader(countryData, delimiter=',')
-            for row in csv_reader:
-                mexicoCovData.append([row[0], row[1], row[2]])   
+    mexicoStates = mexicoSoup.scrapeMexico()
+    for row in mexicoStates:
+        mexicoCovData.append([row[0], row[1], row[2]])
    
 if __name__ == '__main__':
-
+    getUsaData()
     getMexicoData()
     getCanadaData()
     app = QApplication(sys.argv)
