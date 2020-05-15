@@ -1,12 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-import csv
 
 URL = 'https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Mexico'
 page = requests.get(URL)
-mexicoData = open("mexicoData.csv", 'w')
-mexicoData.close()
 state_list = []
 
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -22,16 +19,9 @@ def scrapeMexico():
             td_list = state_elem.find_all('td')
             state_cases = re.sub('<|t|d|>|/', '', str(td_list[0]))
             state_deaths = re.sub('<|t|d|>|/', '', str(td_list[2]))
-            state_list.append([state_title, state_cases, state_deaths])
+            state_list.append([state_title, int(state_cases),
+                               int(state_deaths)])
     return state_list
-    mexicoToCSV()
-
-def mexicoToCSV():
-    with open("mexicoData.csv", 'w', newline = '') as fileCases:
-        covid_writer = csv.writer(fileCases)
-        for state in state_list:
-            covid_writer.writerow([state[0], state[1], state[2]])
-    mexicoData.close()
 
 if __name__ == '__main__':
     scrapeMexico()
