@@ -907,7 +907,6 @@ class MainWindow(QMainWindow):
         news.setFixedWidth(900)
         news.setFixedHeight(250)
         news.move(1060, 900)
-        news.setText("Trending News:")
         news.setStyleSheet('QTextEdit {\
                           font: bold 16px;\
                           font-family: georgia;\
@@ -918,7 +917,7 @@ class MainWindow(QMainWindow):
                           border-color: darkblue;\
                           padding: 3px;\
                           }')
-       
+        news.setText(newsSource)
         # Layout settings
         hbox.addWidget(refresh)
         hbox.addWidget(source)
@@ -989,11 +988,34 @@ def getMexicoData():
     mexicoStates = mexicoSoup.scrapeMexico()
     for row in mexicoStates:
         mexicoCovData.append([row[0], row[1], row[2]])
+        
+def getNewsData():
+    newsList = newsSoup.scrapeNews()
+   
+    newsStrOne = ''.join(newsList[0]) + ", " + ''.join(newsList[1]) + ", " +\
+                 ''.join(newsList[2]) + "\n"
+    newsStrTwo = ''.join(newsList[3]) + ", " + ''.join(newsList[4]) + ", " +\
+                 ''.join(newsList[5]) + "\n"
+    newsStrThree = ''.join(newsList[6]) + ", " + ''.join(newsList[7]) + ", " +\
+                 ''.join(newsList[8]) + "\n"
+    newsStrFour = ''.join(newsList[9]) + ", " + ''.join(newsList[10]) + ", " +\
+                 ''.join(newsList[11]) + "\n"
+    newsStrFive = ''.join(newsList[12]) + ", " + ''.join(newsList[13]) + ", " +\
+                 ''.join(newsList[14])
+
+    newsSource = "Trending News: \n" + "\n" +\
+                 newsStrOne + "\n" +\
+                 newsStrTwo + "\n" +\
+                 newsStrThree + "\n" +\
+                 newsStrFour + "\n" +\
+                 newsStrFive 
+    return newsSource
    
 if __name__ == '__main__':
     getUsaData()
     getMexicoData()
     getCanadaData()
+    newsSource = getNewsData()
     app = QApplication(sys.argv)
     codeScraper = MainWindow()
     sys.exit(app.exec_())
