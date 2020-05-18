@@ -31,15 +31,15 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         self.setWindowTitle('PROJECT CODE SCRAPPERS')
-        self.setGeometry(100,100, 2020, 1300)
+        self.setGeometry(30,30, 180, 1000)
 
         hbox = QHBoxLayout()
 
         # Create Canada Tree View
         treeView = QTreeView(self)
         treeView.setHeaderHidden(True)
-        treeView.setFixedWidth(380)
-        treeView.setFixedHeight(850)
+        treeView.setFixedWidth(350)
+        treeView.setFixedHeight(800)
         treeView.move(10, 5)
         treeView.setStyleSheet('QTreeView {\
                           background-color:#FFFAFA;\
@@ -153,9 +153,9 @@ class MainWindow(QMainWindow):
         # Create USA Tree View
         treeViewUS = QTreeView(self)
         treeViewUS.setHeaderHidden(True)
-        treeViewUS.setFixedWidth(380)
-        treeViewUS.setFixedHeight(850)
-        treeViewUS.move(380, 5)
+        treeViewUS.setFixedWidth(350)
+        treeViewUS.setFixedHeight(800)
+        treeViewUS.move(355, 5)
         treeViewUS.setStyleSheet('QTreeView {\
                           margin: left;\
                           background-color:#F0F8FF;\
@@ -571,9 +571,9 @@ class MainWindow(QMainWindow):
         # Create Mexico Tree View
         treeViewMx = QTreeView(self)
         treeViewMx.setHeaderHidden(True)
-        treeViewMx.setFixedWidth(380)
-        treeViewMx.setFixedHeight(850)
-        treeViewMx.move(750, 5)
+        treeViewMx.setFixedWidth(350)
+        treeViewMx.setFixedHeight(800)
+        treeViewMx.move(700, 5)
        
         treeViewMx.setStyleSheet('QTreeView {\
                           margin: left;\
@@ -821,9 +821,9 @@ class MainWindow(QMainWindow):
 
         # North America Map
         mapNA = QFrame(self)
-        mapNA.setFixedWidth(830)
-        mapNA.setFixedHeight(850)
-        mapNA.move(1130, 20)
+        mapNA.setFixedWidth(720)
+        mapNA.setFixedHeight(780)
+        mapNA.move(1055, 10)
         mapNA.setStyleSheet('QFrame {\
                               background-color:#F5F5F5;\
                               border: 6px gray solid;\
@@ -843,9 +843,9 @@ class MainWindow(QMainWindow):
                           padding: 6px;\
                           }')
 
-        source.setFixedWidth(230)
-        source.setFixedHeight(100)
-        source.move(100, 930)
+        source.setFixedWidth(220)
+        source.setFixedHeight(80)
+        source.move(100, 830)
         source.clicked.connect(self.onSourceClicked)
         
         # Devs Button
@@ -862,9 +862,9 @@ class MainWindow(QMainWindow):
                           padding: 6px;\
                           }')
 
-        devs.setFixedWidth(230)
-        devs.setFixedHeight(100)                            
-        devs.move(400, 930)
+        devs.setFixedWidth(220)
+        devs.setFixedHeight(80)                            
+        devs.move(400, 830)
         devs.clicked.connect(self.onDevsClicked)
         
         # Quit Button
@@ -880,16 +880,16 @@ class MainWindow(QMainWindow):
                           border-corlor: beige;\
                           padding: 6px;\
                           }')
-        quitButton.setFixedWidth(230)
-        quitButton.setFixedHeight(100)                            
-        quitButton.move(700, 930)
+        quitButton.setFixedWidth(220)
+        quitButton.setFixedHeight(80)                            
+        quitButton.move(700, 830)
         quitButton.clicked.connect(self.onQuitClicked)
         
         # Trending News Section
         news = QPlainTextEdit(self)
-        news.setFixedWidth(980)
-        news.setFixedHeight(250)
-        news.move(1000, 930)
+        news.setFixedWidth(780)
+        news.setFixedHeight(190)
+        news.move(1000, 800)
         news.setStyleSheet('QTextEdit {\
                           font: 16px;\
                           font-family: georgia;\
@@ -900,7 +900,7 @@ class MainWindow(QMainWindow):
                           border-color: #A0A0A0;\
                           padding: 3px;\
                           }')
-        news.setText(newsSource)
+        news.setPlainText(newsSource)
         
         # Layout settings
         hbox.addWidget(source)
@@ -924,7 +924,7 @@ class MainWindow(QMainWindow):
               
         sourceMsg = QMessageBox(self)
         sourceMsg.setWindowTitle('References:')
-        sourceMsg.move(100, 1000)
+        sourceMsg.move(100, 940)
         sourceMsg.setText(source)
         sourceMsg.setStyleSheet('QMessageBox {\
                               font: 15px;\
@@ -941,7 +941,7 @@ class MainWindow(QMainWindow):
                   
         devsMsg = QMessageBox(self)
         devsMsg.setWindowTitle('Developers')
-        devsMsg.move(400, 1000)
+        devsMsg.move(430, 940)
         devsMsg.setText(developers)
         devsMsg.setStyleSheet('QMessageBox {\
                               font-size: 18px;\
