@@ -829,25 +829,6 @@ class MainWindow(QMainWindow):
                               border: 6px gray solid;\
                               }')
 
-        # Refesh Button                      
-        refresh = QPushButton('Refresh', self)
-        refresh.setStyleSheet('QPushButton {\
-                          margin: left;\
-                          font: bold 16px;\
-                          background-color:purple;\
-                          color:white;\
-                          border-style: inset;\
-                          border-width: 2px;\
-                          border-radius: 10px;\
-                          border-corlor: beige;\
-                          padding: 6px;\
-                          }')
-
-        refresh.setFixedWidth(230)
-        refresh.setFixedHeight(100)
-        refresh.move(50, 900)
-        refresh.clicked.connect(self.onRefreshClicked)
-
         # Source Button
         source = QPushButton('Source', self)
         source.setStyleSheet('QPushButton {\
@@ -864,7 +845,7 @@ class MainWindow(QMainWindow):
 
         source.setFixedWidth(230)
         source.setFixedHeight(100)
-        source.move(300, 900)
+        source.move(100, 930)
         source.clicked.connect(self.onSourceClicked)
         
         # Devs Button
@@ -883,9 +864,10 @@ class MainWindow(QMainWindow):
 
         devs.setFixedWidth(230)
         devs.setFixedHeight(100)                            
-        devs.move(550, 900)
+        devs.move(400, 930)
         devs.clicked.connect(self.onDevsClicked)
-
+        
+        # Quit Button
         quitButton = QPushButton('Quit', self)
         quitButton.setStyleSheet('QPushButton {\
                           margin: left;\
@@ -900,13 +882,14 @@ class MainWindow(QMainWindow):
                           }')
         quitButton.setFixedWidth(230)
         quitButton.setFixedHeight(100)                            
-        quitButton.move(800, 900)
+        quitButton.move(700, 930)
         quitButton.clicked.connect(self.onQuitClicked)
         
+        # Trending News Section
         news = QPlainTextEdit(self)
-        news.setFixedWidth(900)
+        news.setFixedWidth(980)
         news.setFixedHeight(250)
-        news.move(1060, 900)
+        news.move(1000, 930)
         news.setStyleSheet('QTextEdit {\
                           font: bold 16px;\
                           font-family: georgia;\
@@ -918,8 +901,8 @@ class MainWindow(QMainWindow):
                           padding: 3px;\
                           }')
         news.setText(newsSource)
+        
         # Layout settings
-        hbox.addWidget(refresh)
         hbox.addWidget(source)
         hbox.addWidget(devs)
         hbox.addWidget(news)
@@ -941,7 +924,7 @@ class MainWindow(QMainWindow):
               
         sourceMsg = QMessageBox(self)
         sourceMsg.setWindowTitle('References:')
-        sourceMsg.move(400, 1100)
+        sourceMsg.move(100, 1000)
         sourceMsg.setText(source)
         sourceMsg.setStyleSheet('QMessageBox {\
                               font: 15px;\
@@ -958,8 +941,7 @@ class MainWindow(QMainWindow):
                   
         devsMsg = QMessageBox(self)
         devsMsg.setWindowTitle('Developers')
-        devsMsg.move(680, 1080)
-        devsMsg.resize(500, 300)
+        devsMsg.move(400, 1000)
         devsMsg.setText(developers)
         devsMsg.setStyleSheet('QMessageBox {\
                               font-size: 18px;\
