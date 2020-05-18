@@ -1,36 +1,31 @@
-import requests
-from bs4 import BeautifulSoup
-import re
+import bs4
 import csv
+from bs4 import BeautifulSoup as soup
+from urllib.request import urlopen
 
-URL = 'https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_States'
-page = requests.get(URL)
-state_list = []
+news_url = "https://news.google.com/rss/search?q=covid-19&hl=en-US&sort=date&gl=US&num=100&ceid=US:en"
+Client = urlopen(news_url)
+xml_page = Client.read()
+Client.close()
 
-soup = BeautifulSoup(page.content, 'html.parser')
-results = soup.find(id = 'mw-content-text')
-results_table = results.find('table', class_ = 'wikitable')
+soup_page = soup(xml_page,"xml")
+results = soup_page.findAll("item")
 
-state_list = []
-state_elems = results_table.find_all('tr')
-def scrapeUSA():
-    for state_elem in state_elems:
-        if (state_elem.find('a') and state_elem.find('a').has_attr('title')
-            and not(state_elem.has_attr('style'))):
-            if(state_elem !=''):
-                state_title = state_elem.find('a').text
-                td_list = state_elem.find_all('td')
-                state_cases = re.sub('<|t|d|>|/', '', str(td_list[0]))
-                state_cases = state_cases.rstrip('\n')
-                state_deaths = re.sub('<|t|d|>|/', '', str(td_list[1]))
-                state_deaths = state_deaths.rstrip('\n')
-                if(state_title == 'Kansas'):
-                    state_cases = str(td_list[0])
-                    state_cases = state_cases[4:9]
-                state_list.append([state_title, state_cases, state_deaths])
-    return state_list
+# Print news title, url and publish date
+news_list = []
+
+def scrapeNews():
+    counter = 0
+    for news in results:
+        
+        if(counter < 5):
+            news_list.append(news.title.text)
+            news_list.append(news.link.text) 
+            news_list.append(news.pubDate.text)
+            counter +=1
+   
+    return news_list
 
 if __name__ == '__main__':
-    usa_list = scrapeUSA()
-    print(usa_list)
-    
+    scrapeNews()
+
