@@ -948,7 +948,7 @@ class MainWindow(QMainWindow):
                               font-family: georgia;\
                               color: #000066;\
                               font-weight: bold;\
-                              background-color:#CCE5FF;\
+                              background-color:#617BB7;\
                               padding: 6px;\
                               }')
         devsMsg.exec_()
