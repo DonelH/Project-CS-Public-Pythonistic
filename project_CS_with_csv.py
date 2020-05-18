@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         
         self.setWindowTitle('PROJECT CODE SCRAPPERS')
-        self.setGeometry(30,30, 180, 1000)
+        self.setGeometry(30,30, 1800, 1000)
 
         hbox = QHBoxLayout()
 
@@ -820,14 +820,11 @@ class MainWindow(QMainWindow):
         treeViewMx.setModel(treeModelMx)
 
         # North America Map
-        mapNA = QFrame(self)
-        mapNA.setFixedWidth(720)
-        mapNA.setFixedHeight(780)
-        mapNA.move(1055, 10)
-        mapNA.setStyleSheet('QFrame {\
-                              background-color:#F5F5F5;\
-                              border: 6px gray solid;\
-                              }')
+        mapNALabel = QLabel(self)
+        mapNA = QPixmap("mexMap.jpg")
+        mapNALabel.setPixmap(mapNA)
+        mapNALabel.resize(mapNA.width(), mapNA.height())
+        mapNALabel.move(1150, 100)
 
         # Source Button
         source = QPushButton('Source', self)
