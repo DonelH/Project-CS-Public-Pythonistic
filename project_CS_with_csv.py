@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QColor, QFont
+from PyQt5.QtGui import QColor, QFont, QPixmap
 from PyQt5.QtCore import *
 from PyQt5.Qt import QStandardItemModel, QStandardItem
 import csv
