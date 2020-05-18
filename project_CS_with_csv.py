@@ -891,13 +891,13 @@ class MainWindow(QMainWindow):
         news.setFixedHeight(250)
         news.move(1000, 930)
         news.setStyleSheet('QTextEdit {\
-                          font: bold 16px;\
+                          font: 16px;\
                           font-family: georgia;\
                           color: #000080;\
                           border-style: dot-dash;\
                           border-width: 1px;\
                           border-radius: 10px;\
-                          border-color: darkblue;\
+                          border-color: #A0A0A0;\
                           padding: 3px;\
                           }')
         news.setText(newsSource)
