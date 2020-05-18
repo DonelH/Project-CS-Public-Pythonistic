@@ -932,22 +932,30 @@ class MainWindow(QMainWindow):
         sourceMsg.exec_()
 
     def onDevsClicked(self, developers):
+        '''
         developers = (" Eldon Hayes          \n" +
                       " Cindy Nguyen         \n" +
                       " Carlan Nguyen        \n")
                   
         devsMsg = QMessageBox(self)
-        devsMsg.setWindowTitle('Developers')
+        devsMsg.setWindowTitle('Developed by: ')
         devsMsg.move(430, 940)
         devsMsg.setText(developers)
         devsMsg.setStyleSheet('QMessageBox {\
                               font-size: 18px;\
                               font-family: georgia;\
-                              color: #000066;\
                               font-weight: bold;\
                               background-color:#617BB7;\
                               padding: 6px;\
                               }')
+        devsMsg.exec_()
+        '''
+        devsMsg = QMessageBox(self)
+        devsMsg.setWindowTitle('Developed by: ')
+        cardImage = QPixmap("csImage.png")
+        devsMsg.setIconPixmap(cardImage)
+        devsMsg.resize(cardImage.width(), cardImage.height())
+        devsMsg.move(430, 830)
         devsMsg.exec_()
 
     def onQuitClicked(self):
