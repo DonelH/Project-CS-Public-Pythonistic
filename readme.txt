@@ -1,4 +1,19 @@
+Revisions---
+
+Project code has seen substantial revision since last turned in. Most notable additions include changing the
+project to MVC format and displaying the maps within the GUI. The maps are pulled from excel and use the data
+scraped from the BeautifulSoups we have made to make chloropleth visuals. We have added a scraper for news articles
+regarding COVID-19, with 5 trending articles being displayed on the bottom right corner. Furthermore, we
+have added functions to the buttons while adding more buttons. Namely, we added a Developers button and a 
+quit button. All three buttons have on click actions. More color was added to the trees displaying the COVID-19
+information and the ability to change the map between Mexico, USA, and Canada was added. The User Guide has been
+updated for our project and contains an actual step by step process on using the application. Furthermore, libraries
+necessary for install have been added.
+
+-------------------------------------------------------------------------------------------------------------------
+
 State of the Code---
+
 Currently, most of our code is functional. However, due to following different guides and tutorials,
 consistency in naming conventions and spacing will not be superb. The use of different libraries which might come
 with their own code etiquette has also affected consistency in coding.
