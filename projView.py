@@ -1,4 +1,5 @@
 import sys
+import subprocess
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -868,6 +869,24 @@ class MainWindow(QMainWindow):
         
         mexicoMapButton.clicked.connect(self.onMexicoMapClicked)
         
+        # Tutorial Button
+        tutorial = QPushButton('Tutorial', self)
+        tutorial.setStyleSheet('QPushButton {\
+                          font: bold 16px;\
+                          background-color:#90ee90;\
+                          color:white;\
+                          border-style: inset;\
+                          border-width: 3px;\
+                          border-radius: 10px;\
+                          border-corlor: beige;\
+                          padding: 6px;\
+                          }')
+
+        tutorial.setFixedWidth(220)
+        tutorial.setFixedHeight(80)
+        tutorial.move(700, 830)
+        tutorial.clicked.connect(self.onTutorialClicked)
+        
         # Source Button
         source = QPushButton('Source', self)
         source.setStyleSheet('QPushButton {\
@@ -918,7 +937,7 @@ class MainWindow(QMainWindow):
                           }')
         quitButton.setFixedWidth(220)
         quitButton.setFixedHeight(80)                            
-        quitButton.move(700, 830)
+        quitButton.move(400, 920)
         quitButton.clicked.connect(self.close)
         
         # Trending News Section
@@ -944,6 +963,7 @@ class MainWindow(QMainWindow):
         hbox.addWidget(source)
         hbox.addWidget(devs)
         hbox.addWidget(news)
+        hbox.addWidget(tutorial)
         hbox.addWidget(quitButton)
                    
         self.setLayout(hbox)
@@ -966,6 +986,9 @@ class MainWindow(QMainWindow):
         self.mapNALabel.setPixmap(mexicoMap)
         self.mapNALabel.resize(mexicoMap.width(), mexicoMap.height())
         self.mapNALabel.move(1020, 150)
+        
+    def onTutorialClicked(self, tutorial):
+        subprocess.Popen(['Tutorial.pdf'],shell=True) 
         
     def onSourceClicked(self, source):
 
