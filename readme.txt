@@ -7,7 +7,8 @@ regarding COVID-19, with 5 trending articles being displayed on the bottom right
 have added functions to the buttons while adding more buttons. Namely, we added a Developers button and a 
 quit button. All three buttons have on click actions. More color was added to the trees displaying the COVID-19
 information and the ability to change the map between Mexico, USA, and Canada was added. The User Guide has been
-updated for our project and contains an actual step by step process on using the application. Furthermore, libraries
+updated for our project and contains an actual step by step process on using the application. The User Guide has
+been connected to the Tutorial button and should pop up as a pdf now. Furthermore, libraries
 necessary for install have been added.
 
 -------------------------------------------------------------------------------------------------------------------
