@@ -974,7 +974,10 @@ class MainWindow(QMainWindow):
                   "https://doc.qt.io/qt-5/stylesheet-reference.html \n" + \
                   "https://doc.qt.io/qtforpython/PySide2/QtGui/QFont.html#more \n" + \
                   "https://doc.qt.io/qtforpython/PySide2/QtWidgets/QTreeView.html \n" + \
-                  "https://docs.python.org/3/howto/urllib2.html")
+                  "https://docs.python.org/3/howto/urllib2.html \n" + \
+                  "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_the_United_States \n" + \
+                  "https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Mexico \n" + \
+                  "https://www.canada.ca/en/public-health/services/diseases/2019-novel-coronavirus-infection.html?topic=tilelink")
               
         sourceMsg = QMessageBox(self)
         sourceMsg.setWindowTitle('References:')
