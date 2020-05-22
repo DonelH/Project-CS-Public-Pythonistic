@@ -834,7 +834,7 @@ class MainWindow(QMainWindow):
         
         canadaMapButton.clicked.connect(self.onCanadaMapClicked)
         
-        usaMapButton = QPushButton("USA MAP", self)
+        usaMapButton = QPushButton("USA Map", self)
         usaMapButton.setFixedWidth(170)
         usaMapButton.setFixedHeight(80)
         usaMapButton.move(1350, 50)
