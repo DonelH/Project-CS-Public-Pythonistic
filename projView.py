@@ -567,7 +567,7 @@ class MainWindow(QMainWindow):
         treeViewMx.setHeaderHidden(True)
         treeViewMx.setFixedWidth(350)
         treeViewMx.setFixedHeight(800)
-        treeViewMx.move(700, 5)
+        treeViewMx.move(675, 5)
        
         treeViewMx.setStyleSheet('QTreeView {\
                           margin: left;\
@@ -953,19 +953,19 @@ class MainWindow(QMainWindow):
         canadaMap = QPixmap("canMap.jpg")
         self.mapNALabel.setPixmap(canadaMap)
         self.mapNALabel.resize(canadaMap.width(), canadaMap.height())
-        self.mapNALabel.move(1075, 150)
+        self.mapNALabel.move(1020, 150)
 
     def onUSAMapClicked(self):
         usaMap = QPixmap("usaMap.jpg")
         self.mapNALabel.setPixmap(usaMap)
         self.mapNALabel.resize(usaMap.width(), usaMap.height())
-        self.mapNALabel.move(1075, 150)
+        self.mapNALabel.move(1020, 150)
 
     def onMexicoMapClicked(self):
         mexicoMap = QPixmap("mexMap.jpg")
         self.mapNALabel.setPixmap(mexicoMap)
         self.mapNALabel.resize(mexicoMap.width(), mexicoMap.height())
-        self.mapNALabel.move(1075, 150)
+        self.mapNALabel.move(1020, 150)
         
     def onSourceClicked(self, source):
 
