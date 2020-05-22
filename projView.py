@@ -815,10 +815,6 @@ class MainWindow(QMainWindow):
 
         # North America Map
         self.mapNALabel = QLabel(self)
-        #mapNA = QPixmap("mexMap.jpg")
-        #self.mapNALabel.setPixmap(mapNA)
-        #self.mapNALabel.resize(mapNA.width(), mapNA.height())
-        #self.mapNALabel.move(1150, 200)
         hbox.addWidget(self.mapNALabel)
         
         canadaMapButton = QPushButton("Canada Map", self)
