@@ -919,7 +919,7 @@ class MainWindow(QMainWindow):
         quitButton.setFixedWidth(220)
         quitButton.setFixedHeight(80)                            
         quitButton.move(700, 830)
-        quitButton.clicked.connect(self.onQuitClicked)
+        quitButton.clicked.connect(self.close)
         
         # Trending News Section
         news = QTextEdit(self)
@@ -996,9 +996,6 @@ class MainWindow(QMainWindow):
         devsMsg.resize(cardImage.width(), cardImage.height())
         devsMsg.move(430, 400)
         devsMsg.exec_()
-
-    def onQuitClicked(self):
-        sys.exit(app.exec_())
 
 def start(mexicoCovData, canadaCovData, usaCovData, newsSource):
     app = QApplication(sys.argv)
