@@ -955,13 +955,13 @@ class MainWindow(QMainWindow):
         self.mapNALabel.resize(canadaMap.width(), canadaMap.height())
         self.mapNALabel.move(1075, 150)
 
-    def onUSAMapClicked(self, *args):
+    def onUSAMapClicked(self):
         usaMap = QPixmap("usaMap.jpg")
         self.mapNALabel.setPixmap(usaMap)
         self.mapNALabel.resize(usaMap.width(), usaMap.height())
         self.mapNALabel.move(1075, 150)
 
-    def onMexicoMapClicked(self, *args):
+    def onMexicoMapClicked(self):
         mexicoMap = QPixmap("mexMap.jpg")
         self.mapNALabel.setPixmap(mexicoMap)
         self.mapNALabel.resize(mexicoMap.width(), mexicoMap.height())
