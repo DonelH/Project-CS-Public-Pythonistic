@@ -51,5 +51,16 @@ Carlan has taken over the news section and its end implementation. Eldon has bee
 implementation of the map and research regarding it. If we manage to adequately finish our respective section, the
 person will then hop on towards implementation of the buttons. 
 
+Libraries needed to Pip Install---
+lxml
+pandas
+bs4
+openpyxl
+PyQt5
+requests
+
+Other Requirements---
+Internet connection needed since information is pulled from online sources
+Excel is needed to view raw scraped data and to change chloropleth maps, if desired
 
 
