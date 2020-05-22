@@ -1,8 +1,9 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QColor, QFont, QPixmap
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.Qt import QStandardItemModel, QStandardItem
+from PyQt5 import QtCore, QtGui, QtWidgets
 import projModel
 
 class StandardItem(QStandardItem):
@@ -16,24 +17,25 @@ class StandardItem(QStandardItem):
         self.setForeground(color)
         self.setFont(font)
         self.setText(text)
-
+        
 class MainWindow(QMainWindow):
 
     def __init__(self, mexicoCovData, canadaCovData, usaCovData, newsSource):
         super().__init__()
         
         self.setWindowTitle('PROJECT CODE SCRAPPERS')
-        self.setGeometry(30,30, 1800, 1000)
-
+        self.setGeometry(30, 30, 1850, 1050)      
+        
         hbox = QHBoxLayout()
-
+        
         # Create Canada Tree View
         treeView = QTreeView(self)
         treeView.setHeaderHidden(True)
         treeView.setFixedWidth(350)
         treeView.setFixedHeight(800)
-        treeView.move(10, 5)
+        treeView.move(5, 5)
         treeView.setStyleSheet('QTreeView {\
+                          margin: left;\
                           background-color:#FFFAFA;\
                           border-style: solid;\
                           border-width: 2px;\
@@ -147,7 +149,7 @@ class MainWindow(QMainWindow):
         treeViewUS.setHeaderHidden(True)
         treeViewUS.setFixedWidth(350)
         treeViewUS.setFixedHeight(800)
-        treeViewUS.move(355, 5)
+        treeViewUS.move(340, 5)
         treeViewUS.setStyleSheet('QTreeView {\
                           margin: left;\
                           background-color:#F0F8FF;\
@@ -812,21 +814,72 @@ class MainWindow(QMainWindow):
         treeViewMx.setModel(treeModelMx)
 
         # North America Map
-        mapNALabel = QLabel(self)
-        mapNA = QPixmap("mexMap.jpg")
-        mapNALabel.setPixmap(mapNA)
-        mapNALabel.resize(mapNA.width(), mapNA.height())
-        mapNALabel.move(1150, 100)
+        self.mapNALabel = QLabel(self)
+        #mapNA = QPixmap("mexMap.jpg")
+        #self.mapNALabel.setPixmap(mapNA)
+        #self.mapNALabel.resize(mapNA.width(), mapNA.height())
+        #self.mapNALabel.move(1150, 200)
+        hbox.addWidget(self.mapNALabel)
+        
+        canadaMapButton = QPushButton("Canada Map", self)
+        canadaMapButton.setFixedWidth(170)
+        canadaMapButton.setFixedHeight(80)
+        canadaMapButton.move(1150, 50)
+        canadaMapButton.setStyleSheet('QPushButton {\
+                          font: bold 16px;\
+                          background-color:purple;\
+                          color:white;\
+                          border-style: inset;\
+                          border-width: 2px;\
+                          border-radius: 10px;\
+                          border-corlor: beige;\
+                          padding: 6px;\
+                          }')
+        
+        canadaMapButton.clicked.connect(self.onCanadaMapClicked)
+        
+        usaMapButton = QPushButton("USA MAP", self)
+        usaMapButton.setFixedWidth(170)
+        usaMapButton.setFixedHeight(80)
+        usaMapButton.move(1350, 50)
+        usaMapButton.setStyleSheet('QPushButton {\
+                          font: bold 16px;\
+                          background-color:darkblue;\
+                          color:white;\
+                          border-style: inset;\
+                          border-width: 2px;\
+                          border-radius: 10px;\
+                          border-corlor: beige;\
+                          padding: 6px;\
+                          }')
+        
+        usaMapButton.clicked.connect(self.onUSAMapClicked)
+        
+        mexicoMapButton = QPushButton("Mexico Map", self)
+        mexicoMapButton.setFixedWidth(170)
+        mexicoMapButton.setFixedHeight(80)
+        mexicoMapButton.move(1550, 50)
+        mexicoMapButton.setStyleSheet('QPushButton {\
+                          font: bold 16px;\
+                          background-color:darkgreen;\
+                          color:white;\
+                          border-style: inset;\
+                          border-width: 2px;\
+                          border-radius: 10px;\
+                          border-corlor: beige;\
+                          padding: 6px;\
+                          }')
+        
+        mexicoMapButton.clicked.connect(self.onMexicoMapClicked)
         
         # Source Button
         source = QPushButton('Source', self)
         source.setStyleSheet('QPushButton {\
-                          margin: left;\
                           font: bold 16px;\
                           background-color:#FFB266;\
                           color:white;\
                           border-style: inset;\
-                          border-width: 2px;\
+                          border-width: 3px;\
                           border-radius: 10px;\
                           border-corlor: beige;\
                           padding: 6px;\
@@ -840,12 +893,11 @@ class MainWindow(QMainWindow):
         # Devs Button
         devs = QPushButton('Developers', self)
         devs.setStyleSheet('QPushButton {\
-                          margin: left;\
                           font: bold 16px;\
                           background-color: lightblue;\
                           color:white;\
                           border-style: inset;\
-                          border-width: 2px;\
+                          border-width: 3px;\
                           border-radius: 10px;\
                           border-corlor: beige;\
                           padding: 6px;\
@@ -859,12 +911,11 @@ class MainWindow(QMainWindow):
         # Quit Button
         quitButton = QPushButton('Quit', self)
         quitButton.setStyleSheet('QPushButton {\
-                          margin: left;\
                           font: bold 16px;\
                           background-color: gray;\
                           color:white;\
                           border-style: inset;\
-                          border-width: 2px;\
+                          border-width: 3px;\
                           border-radius: 10px;\
                           border-corlor: beige;\
                           padding: 6px;\
@@ -875,12 +926,12 @@ class MainWindow(QMainWindow):
         quitButton.clicked.connect(self.onQuitClicked)
         
         # Trending News Section
-        news = QPlainTextEdit(self)
-        news.setFixedWidth(780)
+        news = QTextEdit(self)
+        news.setFixedWidth(830)
         news.setFixedHeight(190)
-        news.move(1000, 800)
+        news.move(1000, 830)        
         news.setStyleSheet('QTextEdit {\
-                          font: 16px;\
+                          font:16px;\
                           font-family: georgia;\
                           color: #000080;\
                           border-style: dot-dash;\
@@ -889,19 +940,37 @@ class MainWindow(QMainWindow):
                           border-color: #A0A0A0;\
                           padding: 3px;\
                           }')
+
         news.setPlainText(newsSource)
+        news.setReadOnly(True)
         
         # Layout settings
         hbox.addWidget(source)
         hbox.addWidget(devs)
         hbox.addWidget(news)
+        hbox.addWidget(quitButton)
                    
         self.setLayout(hbox)
         self.show()
+        
+    def onCanadaMapClicked(self):
+        canadaMap = QPixmap("canMap.jpg")
+        self.mapNALabel.setPixmap(canadaMap)
+        self.mapNALabel.resize(canadaMap.width(), canadaMap.height())
+        self.mapNALabel.move(1075, 150)
 
-    def onRefreshClicked(self):
-        refMsg = QMessageBox(self)
+    def onUSAMapClicked(self, *args):
+        usaMap = QPixmap("usaMap.jpg")
+        self.mapNALabel.setPixmap(usaMap)
+        self.mapNALabel.resize(usaMap.width(), usaMap.height())
+        self.mapNALabel.move(1075, 150)
 
+    def onMexicoMapClicked(self, *args):
+        mexicoMap = QPixmap("mexMap.jpg")
+        self.mapNALabel.setPixmap(mexicoMap)
+        self.mapNALabel.resize(mexicoMap.width(), mexicoMap.height())
+        self.mapNALabel.move(1075, 150)
+        
     def onSourceClicked(self, source):
 
         source = ("https://realpython.com/beautiful-soup-web-scraper-python \n" + \
@@ -913,7 +982,7 @@ class MainWindow(QMainWindow):
               
         sourceMsg = QMessageBox(self)
         sourceMsg.setWindowTitle('References:')
-        sourceMsg.move(100, 940)
+        sourceMsg.move(400, 400)
         sourceMsg.setText(source)
         sourceMsg.setStyleSheet('QMessageBox {\
                               font: 15px;\
@@ -924,22 +993,12 @@ class MainWindow(QMainWindow):
         sourceMsg.exec_()
 
     def onDevsClicked(self, developers):
-        developers = (" Eldon Hayes          \n" +
-                      " Cindy Nguyen         \n" +
-                      " Carlan Nguyen        \n")
-                  
         devsMsg = QMessageBox(self)
-        devsMsg.setWindowTitle('Developers')
-        devsMsg.move(430, 940)
-        devsMsg.setText(developers)
-        devsMsg.setStyleSheet('QMessageBox {\
-                              font-size: 18px;\
-                              font-family: georgia;\
-                              color: #000066;\
-                              font-weight: bold;\
-                              background-color:#617BB7;\
-                              padding: 6px;\
-                              }')
+        devsMsg.setWindowTitle('Developed by: ')
+        cardImage = QPixmap("csImage.png")
+        devsMsg.setIconPixmap(cardImage)
+        devsMsg.resize(cardImage.width(), cardImage.height())
+        devsMsg.move(430, 400)
         devsMsg.exec_()
 
     def onQuitClicked(self):
@@ -953,6 +1012,3 @@ def start(mexicoCovData, canadaCovData, usaCovData, newsSource):
     
 if __name__ == '__main__':
     start(mexicoCovData, canadaCovData, usaCovData, newsSource)
-
-
-    
