@@ -62,7 +62,7 @@ def scrapeCanada():
             prov_name = str(td_list[0])
             prov_name = prov_name[4:len(prov_name) - 5]
             prov_cases = re.sub('<|t|d|>|/|/|,', '', str(td_list[1]))
-            prov_deaths = re.sub('<|t|d|>|/|,', '', str(td_list[3]))
+            prov_deaths = re.sub('<|t|d|>|/|,', '', str(td_list[2]))
             canada_list.append([prov_name, int(prov_cases), int(prov_deaths)])
     return canada_list
 
